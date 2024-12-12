@@ -21,9 +21,12 @@ class SlackNotificationError(Exception):
 
 def send_message(channel,message):
     try:
+        print(slack_token, context)
         client = WebClient(token=slack_token, ssl=context)
+        print(client)
+        print(channel,message)
         client.chat_postMessage(
-            channel=channel,
+            channel= channel,
             text=message
         )
     except SlackApiError as e:
