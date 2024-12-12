@@ -4,3 +4,4 @@ undetected_chromedriver
 seleniumbase
 python_dotenv
 slack_sdk==3.27.1
+Flask==2.0.1

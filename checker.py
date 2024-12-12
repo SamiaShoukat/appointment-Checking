@@ -15,17 +15,13 @@ load_dotenv()
 def check():
     driver = Driver(uc=True, incognito=True, headless=True)
     options = []
-
-    url = "https://service2.diplo.de/rktermin/extern/appointment_showForm.do?locationCode=isla&realmId=108&categoryId=1600"
-    response = requests.get(url)
-    
-    # Check if the request was successful (status code 200)
-    if response.status_code != 200:
+    try:
+        driver.get("https://service2.diplo.de/rktermin/extern/appointment_showForm.do?locationCode=isla&realmId=108&categoryId=1600")
+        
+    except Exception as e:
         print('NOT-ACTIVE')
         return (None, False,options)
 
-    driver.get("https://service2.diplo.de/rktermin/extern/appointment_showForm.do?locationCode=isla&realmId=108&categoryId=1600")
-    
 
     try:
         elem_select = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, "/html/body/div[1]/div[2]/div[1]/div[1]/fieldset/form/div[8]/div[2]/select")))
