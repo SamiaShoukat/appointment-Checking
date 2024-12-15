@@ -17,7 +17,8 @@ def check():
     options = []
     try:
         driver.get("https://service2.diplo.de/rktermin/extern/appointment_showForm.do?locationCode=isla&realmId=108&categoryId=1600")
-        
+        print('ACTIVE')
+        return (None, True,options)
     except Exception as e:
         print('NOT-ACTIVE')
         return (None, False,options)
