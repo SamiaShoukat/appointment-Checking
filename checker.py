@@ -2,7 +2,7 @@ import os
 import logging
 import requests
 
-from seleniumbase import Driver
+
 
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
@@ -12,9 +12,9 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-def check():
+def check(driver):
     
-    driver = Driver(uc=True, incognito=True, headless=True)
+    #driver = Driver(uc=True, incognito=True, headless=True)
 
     """options = []
     try:
@@ -55,11 +55,11 @@ def check():
             return (None, False,options)
     except Exception as e:
         print('ERROR')
-        logging.error('An error occurred: %s', e)
-        print(e)
+        #logging.error('An error occurred: %s', e)
+        #print(e)
         return (e, False,[])
-    finally:
-        driver.quit()
+    # finally:
+    #     driver.quit()
 
 if __name__ == '__main__':
     check()

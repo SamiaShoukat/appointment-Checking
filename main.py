@@ -4,6 +4,7 @@ import time
 import checker
 import mailer
 import slack
+from seleniumbase import Driver
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -13,12 +14,12 @@ data = []
 iteration = 1
 latest_options = []
 
-def init_request():
+def init_request(driver):
     global latest_options
     global data
 
     timestamp = datetime.datetime.now()
-    error, result, options = checker.check()
+    error, result, options = checker.check(driver)
     status = ''
     if error:
         status = 'error'
@@ -58,7 +59,7 @@ def take_action():
         try:
             slack.send_appointment_notification(message= "ERROR : Sending Slack Notification Failed")
         except Exception as e :
-            print(e)
+            print("Error - Take Action")
             # mailer.send_mail('ERROR : Critical Failure', 'Something went wrong . HURRY CHECK !!!')
 
 def cold_start_checks():
@@ -68,9 +69,10 @@ def cold_start_checks():
 def main():
     i = 1
     global iteration
+    driver = Driver(uc=True, incognito=True, headless=True)
     while True:
         print('Cycle ' + str(i) + ':', datetime.datetime.now())
-        init_request()
+        init_request(driver)
         take_action()
         if i == 1:
             cold_start_checks()
