@@ -13,18 +13,22 @@ from dotenv import load_dotenv
 load_dotenv()
 
 def check():
+    
     driver = Driver(uc=True, incognito=True, headless=True)
-    options = []
+
+    """options = []
     try:
         driver.get("https://service2.diplo.de/rktermin/extern/appointment_showForm.do?locationCode=isla&realmId=108&categoryId=1600")
         print('ACTIVE')
         return (None, True,options)
     except Exception as e:
         print('NOT-ACTIVE')
-        return (None, False,options)
+        return (None, False,options)"""
 
 
     try:
+        options = []
+        driver.get("https://service2.diplo.de/rktermin/extern/appointment_showForm.do?locationCode=isla&realmId=108&categoryId=1600")
         elem_select = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, "/html/body/div[1]/div[2]/div[1]/div[1]/fieldset/form/div[8]/div[2]/select")))
         print('Select Element Fetched')
 
