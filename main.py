@@ -46,7 +46,7 @@ def take_action():
                 # mailer.send_mail()
             elif status == 'error':
                 print('Error Occured in Checker')
-                slack.send_appointment_notification(message= "ERROR : checker.py Failure")
+                slack.send_appointment_notification(message= "Health Check: Waiting for the opening")
                 # mailer.send_mail('ERROR : checker.py Failure', 'Something went wrong in the checker.py. Kindly check!')
         elif datetime.datetime.now() > LAST_EMAIL + datetime.timedelta(minutes=int(os.environ.get('EMAIL_AFTER_MIN'))):
             print('Sending Health Check')
